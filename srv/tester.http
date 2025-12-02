@@ -1,0 +1,65 @@
+### Service URL + Service Path
+GET http://localhost:4004/odata/v4/cat-service
+
+### Service URL + Service Path
+GET http://localhost:4004/odata/v4/cat-service/$metadata
+
+
+###
+GET http://localhost:4004/odata/v4/cat-service/EmployeeS
+
+###
+POST http://localhost:4004/odata/v4/cat-service/createEmployee
+Content-Type: application/json
+
+{
+      "ID": "02BD2137-0890-1AEA-A6C2-BB55C197A6XX",
+      "accountNumber": "9988776611",
+      "bankId": "121000118",
+      "bankName": "My Bank of Bengaluru",
+      "email": "kl.rahul@itelo.info",
+      "language": "E",
+      "loginName": "KLRAHUL",
+      "nameFirst": "K L",
+      "nameInitials": null,
+      "nameLast": "Rahul",
+      "nameMiddle": null,
+      "phoneNumber": null,
+      "salaryAmount": "800000.00",
+      "sex": "M"
+}
+
+###
+GET http://localhost:4004/odata/v4/cat-service/getAllEmployees()
+
+###
+PUT http://localhost:4004/odata/v4/cat-service/EmployeeS/02BD2137-0890-1EEA-A6C2-BB55C19B07FB
+Content-Type: application/json
+
+{
+      "Currency_code": "USD",
+      "salaryAmount": "50000.00"
+}
+
+### $top & $skip
+GET http://localhost:4004/odata/v4/cat-service/EmployeeS?$top=5&$skip=5
+
+### $select
+GET http://localhost:4004/odata/v4/cat-service/EmployeeS?&$select=nameFirst,nameLast,email,salaryAmount
+
+
+### $filter
+GET http://localhost:4004/odata/v4/cat-service/EmployeeS?$filter=salaryAmount eq '50000'
+
+
+### Testing Instance Bounded Action
+GET http://localhost:4004/odata/v4/cat-service/POs/74867AD200E41EDBA5D8B0C98DC2E052
+
+###
+POST http://localhost:4004/odata/v4/cat-service/POs('74867AD200E41EDBA5D8B0C98DC2E052')/discountPrice
+Content-Type: application/json
+
+{}
+
+###
+GET http://localhost:4004/odata/v4/cat-service/POs('74867AD200E41EDBA5D8B0C98DC2E052')/largestOrder()
