@@ -5,10 +5,12 @@
   "dependencies": {
     "@cap-js/hana": "^2.3.4",
     "@sap/cds": "^9",
-    "express": "^4"
+    "express": "^4",
+    "@sap/xssec": "^4"
   },
   "devDependencies": {
     "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9",
     "@sap/ux-ui5-tooling": "^1.19.5",
     "cds-plugin-ui5": "^0.13.0"
   },
@@ -24,5 +26,12 @@
   "sapux": [
     "app/poapplication",
     "app/poapp"
-  ]
+  ],
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa"
+      }
+    }
+  }
 }
