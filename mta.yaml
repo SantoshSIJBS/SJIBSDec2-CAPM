@@ -16,6 +16,8 @@ modules:
     path: gen/srv
     parameters:
       instances: 1
+      diskspace: 128M
+      memory: 128M
       buildpack: nodejs_buildpack
     build-parameters:
       builder: npm-ci
@@ -45,6 +47,19 @@ resources:
       config:
         xsappname: cappoapp-${org}-${space}
         tenant-mode: dedicated
+        role-collections:
+          - name: 'Viewer (cappoapp ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.Viewer'
+          - name: 'Admin (cappoapp ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.Admin'
+          - name: 'userattributes (cappoapp ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.userattributes'
   - name: cappoapp-db
     type: com.sap.xs.hdi-container
     parameters:

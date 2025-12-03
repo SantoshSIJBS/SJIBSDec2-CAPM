@@ -1,5 +1,62 @@
 {
-  "scopes": [],
-  "attributes": [],
-  "role-templates": []
+  "xsappname": "cappoapp",
+  "tenant-mode": "dedicated",
+  "scope": [
+    {
+      "name": "$XSAPPNAME.poViewer",
+      "description": "View data using this scope"
+    },
+    {
+      "name": "$XSAPPNAME.poAdmin",
+      "description": "Perform CRUD on data using this scope"
+    }
+  ],
+  "attributes": [
+    {
+      "name": "myCountry",
+      "description": "Country Property",
+      "valueType": "string"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "poViewer",
+      "description": "View data from the service",
+      "scope-references": [
+        "$XSAPPNAME.poViewer"
+      ],
+      "attribute-references": [
+        {
+          "name": "myCountry"
+        }
+      ]
+    },
+    {
+      "name": "poAdmin",
+      "description": "CRUD on data from our service",
+      "scope-references": [
+        "$XSAPPNAME.poAdmin"
+      ]
+    }
+  ],
+  "authorities": [
+    "$ACCEPT_GRANTED_AUTHORITIES"
+  ],
+  "oauth2-configuration": {
+    "token-validity": 9000,
+    "redirect-uris": [
+      "https://*.cfapps.us10-001.hana.ondemand.com/login/callback"
+    ]
+  },
+  "xsenableasyncservice": "true",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Viewer",
+      "description": "Viewer"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Admin"
+    }
+  ]
 }

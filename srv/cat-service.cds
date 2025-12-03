@@ -1,6 +1,6 @@
 using { infy.sd.poa.db as db } from '../db/datamodel';
 
-service CatalogService @(path: 'cat-service') {
+service CatalogService @(path: 'cat-service', requires: 'authenticated-user') {
 
     //Show employee data in the end point
     @Capabilities : { Updatable : false, Insertable }
@@ -9,7 +9,19 @@ service CatalogService @(path: 'cat-service') {
     // Show business parter data in the end point
     entity BusinessPartnerS as projection on db.master.businesspartner;
 
-    entity AddressS as projection on db.master.address;
+    entity AddressS @(
+        restrict : [
+            {
+                grant : ['READ'],
+                to : 'Viewer',
+                where : 'COUNTRY = $user.myCountry'
+            },
+            {
+                grant : ['WRITE'],
+                to : 'Admin'
+            }
+        ]
+    ) as projection on db.master.address;
     
     entity ProductS as projection on db.master.product;
     
