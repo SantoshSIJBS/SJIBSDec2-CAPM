@@ -30,7 +30,7 @@
   "cds": {
     "requires": {
       "[production]": {
-        "auth": "xsuaa"
+        "auth": "mocked"
       }
     }
   }

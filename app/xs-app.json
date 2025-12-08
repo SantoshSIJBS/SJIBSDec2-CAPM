@@ -1,0 +1,19 @@
+{
+    "welcomeFile" : "poapp/webapp/",
+    "authenticationMethod" : "route",
+    "sessionTimeout" : 100,
+    "pluginMetadataEndpiont" : "/metadata",
+    "routes" : [
+        {
+            "source" : "^/poapp/webapp/(*)",
+            "target" : "$1",
+            "localDir" : "poapp/webapp/",
+            "authenticationMethod" : "xsuaa"
+        },
+        {
+            "source" : "^/(.*)$",
+            "destination" : "srv-api",
+            "authenticationMethod" : "xsuaa"
+        }
+    ]
+}
